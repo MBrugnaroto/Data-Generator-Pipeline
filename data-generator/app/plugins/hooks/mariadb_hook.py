@@ -83,4 +83,15 @@ class MariaDBHook():
         conn.commit()
         cursor.close()
         conn.close()
-    
+        
+        
+    def table_statistic(self, table, operator, column) -> None:
+        conn = self.get_conn()
+        cursor = conn.cursor()
+        bulk_query = HQ.table_statistics(table, operator, column)
+        cursor.execute(bulk_query)
+        value = cursor.fetchone()
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return value[0]

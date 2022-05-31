@@ -46,3 +46,11 @@ _TRUNCATE_TABLE = \
     """
     TRUNCATE TABLE {{ table | sqlsafe}}
     """
+    
+_TABLE_STATISTICS = \
+    """
+    SELECT
+        {{ operator | sqlsafe }}({{ column | sqlsafe }})
+    FROM
+        {{ table | sqlsafe }}
+    """

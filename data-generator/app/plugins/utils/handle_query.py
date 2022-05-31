@@ -66,3 +66,11 @@ def truncate_table(table):
         "table": table
     }
     return apply_sql_template(jinja_templates._TRUNCATE_TABLE, data)
+
+def table_statistics(table, operator, column):
+    data = {
+        "table": table,
+        "operator": operator,
+        "column": column
+    }
+    return apply_sql_template(jinja_templates._TABLE_STATISTICS, data)
