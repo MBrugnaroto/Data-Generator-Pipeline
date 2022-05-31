@@ -67,9 +67,9 @@ class InvoiceGeneratorOperator():
         self.export_csv(new_items_invoices, path_items)
     
     
-    def generate_new_invoices(self, df_invoices) -> None:
-        last_invoice  = df_invoices['NUMERO'].max() + 1
-        tax_median = df_invoices['IMPOSTO'].median()
+    def generate_new_invoices(self, hook) -> None:
+        last_invoice = hook.table_statistic("notas_fiscais", "MAX", "NUMERO") + 1
+        tax_median = hook.table_statistic("notas_fiscais", "AVG", "IMPOSTO") 
         new_invoices = {}
         new_items_invoices = {}
         
@@ -107,11 +107,12 @@ class InvoiceGeneratorOperator():
         )
         
         tables = hook.get_tables()
-        dump_tables = {table[0]:hook.bulk_dump(table[0]) for table in tables}
+        dump_tables = {table[0]:hook.bulk_dump(table[0]) for table in tables if table[0] != 'round_statistics' and \
+                                                                                table[0] != 'itens_notas_fiscais' and \
+                                                                                table[0] != 'notas_fiscais'}
         self.set_tables(dump_tables)
-        df_invoices = dump_tables['notas_fiscais']
         generate_start = datetime.now()
-        self.generate_new_invoices(df_invoices)
+        self.generate_new_invoices(hook)
         generate_end = datetime.now()
         total = (generate_end - generate_start).total_seconds()
         
