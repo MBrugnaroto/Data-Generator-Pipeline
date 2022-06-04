@@ -37,7 +37,7 @@ _UPDATE_DATE = \
     """
     UPDATE {{ table | sqlsafe}}
     SET 
-        operator_total_time = {{ value }}
+        {{ column | sqlsafe }} = {{ value }}
     WHERE
         id={{ id }} AND operator={{ operator }} 
     """

@@ -28,6 +28,7 @@ class InvoiceGeneratorOperator():
         self.user = user or os.environ.get("USER") or 'root'
         self.pw = password or os.environ.get('PASSWORD') or ''
         self.id = id 
+        self.total_items = 0
     
         
     def generate_new_items(self, number_invoice) -> Dict[str, List]:
@@ -39,6 +40,7 @@ class InvoiceGeneratorOperator():
             item_key = f'{number_invoice}{product_code}'
 
             if item_key not in new_items_invoices:
+                self.total_items += 1
                 product_price = self.dict_products[key]['PRECO_DE_LISTA']
                 quantity = RVG.generate_rand_number(0, self.quantity)
                 new_items_invoices[item_key] = [number_invoice, 
@@ -97,6 +99,7 @@ class InvoiceGeneratorOperator():
         self.dict_products = dump_tables['tabela_de_produtos']\
                                             .to_dict('index')
     
+    
     def executor(self, context=None) -> None:
         hook = MariaDBHook(
                     database=self.database,
@@ -118,5 +121,9 @@ class InvoiceGeneratorOperator():
         
         hook.insert_data("round_statistics", 
                          ["id", "quantity", "function_total_time", "operator"], 
-                         [self.id, self.max_invoices*2, total, "generator"])
+                         [self.id, self.max_invoices, total, "generator"])
+        
+        hook.insert_data("round_statistics", 
+                         ["id", "quantity", "operator"], 
+                         [self.id, self.total_items, "import"])
         

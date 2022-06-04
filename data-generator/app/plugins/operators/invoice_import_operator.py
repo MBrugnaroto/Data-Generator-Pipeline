@@ -43,7 +43,5 @@ class   InvoiceImportGenerator():
         dump_end = datetime.now()
         total = (dump_end-dump_start).total_seconds()
         
-        hook.insert_data("round_statistics", 
-                    ["id", "function_total_time", "operator"], 
-                    [self.id, total, "import"])
+        hook.update_data("round_statistics", "function_total_time", total, self.id, "import")
         

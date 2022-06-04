@@ -5,8 +5,6 @@ mysql -u root <<EOF
 
 		CREATE DATABASE $1
 		DEFAULT CHARACTER SET UTF8;
-
-		SHOW DATABASES;
 EOF
 if [ $? -eq 0 ]
 then

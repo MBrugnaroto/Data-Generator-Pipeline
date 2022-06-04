@@ -52,9 +52,10 @@ def insert_data(table, data, columns=None):
     }
     return apply_sql_template(jinja_templates._INSERT_DATA, data)
 
-def update_data(table, value, id, operator):
+def update_data(table, column, value, id, operator):
     data = {
         "table": table,
+        "column": column,
         "value": value,
         "id": id,
         "operator": operator

@@ -65,10 +65,10 @@ class MariaDBHook():
         conn.close()
         
         
-    def update_data(self, table, value, id, operator) -> None:
+    def update_data(self, table, column, value, id, operator) -> None:
         conn = self.get_conn()
         cursor = conn.cursor()
-        bulk_query = HQ.update_data(table, value, id, operator)
+        bulk_query = HQ.update_data(table, column, value, id, operator)
         cursor.execute(bulk_query)
         conn.commit()
         cursor.close()

@@ -41,7 +41,7 @@ def invoice_dag(id):
     generator_end = datetime.now()
     total = (generator_end-generator_start).total_seconds()
     
-    hook.update_data("round_statistics", total, id, "generator")
+    hook.update_data("round_statistics", "operator_total_time", total, id, "generator")
     
     import_start = datetime.now()
     InvoiceImportGenerator(
@@ -52,5 +52,5 @@ def invoice_dag(id):
     import_end = datetime.now()
     total = (import_end-import_start).total_seconds()
     
-    hook.update_data("round_statistics", total, id, "import")
+    hook.update_data("round_statistics", "operator_total_time", total, id, "import")
     
