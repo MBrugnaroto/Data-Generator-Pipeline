@@ -45,13 +45,12 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 
 ### Decisões de Projeto:
 - As tabelas ``Tabela de Clientes``, ``Tabela de Vendedores`` e ``Tabela de Produtos`` se manterão inalteradas, ou seja, sem inserção ou remoção de dados. Com base nessas tabelas, serão gerados novos dados para as tabelas ``Notas Fiscais`` e ``Composição de Notas Fiscais``.
-- A quantidade de dados armazenados e a quantidade de requisições ao banco implicam diretamente no desempenho do pipeline. Dessa forma, para que o processo de geração de dados se tornasse mais performático, a utilização de armazenadores locais temporários (como dicionários) foram preteridos para as tabelas estáticas ( ``Tabela de Clientes``, ``Tabela de Vendedores`` e ``Tabela de Produtos``) que continham uma baixa quantidade de dados e necessitavam de muitas requisições.
-    - Para casos opostos, optou-se pela requisição direta ao banco, pois, além de não haver necessidade na utilização de todos os dados, as tabelas que se enquadravam nesse caso ( ``Notas Fiscais`` e ``Composição de Notas Fiscais``) terão um aumento de informação constante, o que consequentemente aumentaria o tempo de processamento.
-- Optou-se pela utilização dicionários como estrutura de dados temporárias, pois proporcionou uma melhora significativa, em questão de velocidade de transporte e processamento, no pipeline de dados quando comparado com o pandas dataframe.
+- A quantidade de dados armazenados e a quantidade de requisições ao banco implicam diretamente no desempenho do pipeline. Dessa forma, para que o processo de geração de dados se tornasse performático, a utilização de armazenadores locais temporários (como dicionários) foram preteridos para as tabelas estáticas ( ``Tabela de Clientes``, ``Tabela de Vendedores`` e ``Tabela de Produtos``) que continham uma baixa quantidade de dados e necessitavam de muitas requisições. Para casos opostos, optou-se pela requisição direta ao banco, pois, além de não haver necessidade na utilização de todos os dados, as tabelas que se enquadravam nesse caso ( ``Notas Fiscais`` e ``Composição de Notas Fiscais``) terão um aumento de informação constante, o que consequentemente aumentaria o tempo de processamento.
+- Optou-se pela utilização dicionários como estrutura de dados temporárias, pois proporcionou uma melhora significativa, em questão de velocidade de transporte e processamento, quando comparado com o pandas dataframe.
 - A carga de dados através de arquivos CSV proporcionou uma inserção de dados no banco de até 10x mais rápida se comprado com a função ```to_sql``` do pandas dataframe.
-    - Principalmente por dois motivos: 
-        - Não há análise de sql e
-        - O engine armazena antes em cache para depois inseri as informações em grandes blocos.
+    - Principalmente por dois motivos: 
+        - Não há análise de sql e
+        - O engine armazena antes em cache para depois inseri as informações em grandes blocos.
 
 ### Pontos observados no caso estudado:
 
@@ -63,9 +62,9 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Total de notas fiscais geradas por iteração: 100.000
 - Total de itens por notas fiscais geradas em cada iteração: 1
 - Total de registros gerados e inseridos: 10.000.000
-- Tempo total para geração dos dados: 133,08 segundos
-- Tempo total para inserção dos dados: 68,48 segundos
-- Tempo total: 201,56 segundos
+- Tempo total para geração dos dados: 133,08 segundos (2 minutos e 22 segundos)
+- Tempo total para inserção dos dados: 68,48 segundos (1 minuto e 14 segundos)
+- Tempo total: 201,56 segundos (3 minutos e 36 segundos)
 
 | ![Total Processing](imgs/total_processing.png) |
 |:--:|
