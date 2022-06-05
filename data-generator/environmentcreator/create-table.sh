@@ -9,7 +9,8 @@ mysql -u root <<EOF
 			operator_total_time float, 
 			function_total_time float, 
 			operator varchar(20) NOT NULL, 
-			primary key(id, operator));
+			date_info date NOT NULL DEFAULT CURDATE(),
+			primary key(id, operator, date_info));
 EOF
 if [ $? -eq 0 ]
 then
