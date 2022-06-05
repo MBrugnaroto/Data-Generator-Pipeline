@@ -1,5 +1,8 @@
 # Data Generator
-Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks utilizados na área de Engenharia de Dados. O projeto consiste no desenvolvimento de um gerador de dados, alimentação de um banco de dados estruturado e na modelagem de visualizações de Key Performance Indicators (KPIs).
+Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks utilizados na área de Engenharia de Dados. O projeto consiste:
+    - no desenvolvimento de um gerador de dados, 
+    - na alimentação de um banco de dados estruturado e na 
+    - apresentação de indicadores.
 
 ### Objetivos:
 - Aumento na compreensão acerca de pipelines de dados
