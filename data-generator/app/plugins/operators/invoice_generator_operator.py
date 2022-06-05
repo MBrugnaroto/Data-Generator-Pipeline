@@ -46,7 +46,7 @@ class InvoiceGeneratorOperator():
                 new_items_invoices[item_key] = [number_invoice, 
                                                 product_code, 
                                                 quantity, 
-                                                product_price]
+                                                product_price*quantity]
         return new_items_invoices
     
     
@@ -70,8 +70,11 @@ class InvoiceGeneratorOperator():
     
     
     def generate_new_invoices(self, hook) -> None:
-        last_invoice = hook.table_statistic("notas_fiscais", "MAX", "NUMERO") + 1
-        tax_median = hook.table_statistic("notas_fiscais", "AVG", "IMPOSTO") 
+        invoice = hook.table_statistic("notas_fiscais", "MAX", "NUMERO")
+        tax = hook.table_statistic("notas_fiscais", "AVG", "IMPOSTO") 
+        last_invoice = invoice + 1 if (invoice) else 0
+        tax_median = tax+RVG.generate_rand_number(0, 1) \
+                        if tax else RVG.generate_rand_number(0, 2)
         new_invoices = {}
         new_items_invoices = {}
         
