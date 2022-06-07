@@ -124,9 +124,9 @@ class InvoiceGeneratorOperator():
         
         hook.insert_data("round_statistics", 
                          ["id", "quantity", "function_total_time", "operator"], 
-                         [self.id, self.max_invoices, total, "generator"])
+                         [self.id, self.max_invoices+self.total_items, total, "generator"])
         
         hook.insert_data("round_statistics", 
                          ["id", "quantity", "operator"], 
-                         [self.id, self.total_items, "import"])
+                         [self.id, self.max_invoices+self.total_items, "import"])
         

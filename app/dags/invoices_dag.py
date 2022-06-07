@@ -26,14 +26,14 @@ def get_connection():
         )
 
 
-def invoice_dag(id):
+def invoice_dag(id, max_invoices, max_items, quantity):
     hook = get_connection()
     
     generator_start = datetime.now()
     InvoiceGeneratorOperator(
-        max_invoices=100000, 
-        max_items=1,
-        quantity=10,
+        max_invoices=max_invoices, 
+        max_items=max_items,
+        quantity=quantity,
         path_file=PATH_DATALAKE\
                     .format(layer="silver", db="DB_TEST"),
         id=id)\
