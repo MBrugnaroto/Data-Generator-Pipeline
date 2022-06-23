@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  database:
+    image: mariadb:10.8
+    container_name: db-container
+    volumes:
+      - ${BACKUP_DB}:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/mysql
+    networks:
+      - db-network
+    ports:
+      - ${PORT}:3306
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+networks:
+  db-network:
+    driver: bridge
+volumes:
+  db-data:
