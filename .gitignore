@@ -19,6 +19,7 @@ __pycache__
 *.cfg
 *.db
 *.log
+*.env
 
 !.vscode/settings.json
 !.vscode/tasks.json

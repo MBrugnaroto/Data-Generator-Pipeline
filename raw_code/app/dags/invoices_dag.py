@@ -20,7 +20,7 @@ def get_connection():
     return MariaDBHook(
             database="DB_TEST",
             host="127.0.0.1",
-            port=3306,
+            port=3307,
             user=os.environ.get("USER"),
             password=os.environ.get('PASSWORD')
         )
@@ -31,6 +31,7 @@ def invoice_dag(id, max_invoices, max_items, quantity):
     
     generator_start = datetime.now()
     InvoiceGeneratorOperator(
+        port=3307,
         max_invoices=max_invoices, 
         max_items=max_items,
         quantity=quantity,
@@ -45,6 +46,7 @@ def invoice_dag(id, max_invoices, max_items, quantity):
     
     import_start = datetime.now()
     InvoiceImportGenerator(
+        port=3307,
         path_dump=PATH_DATALAKE\
                     .format(layer="silver", db="DB_TEST"),
         id=id)\

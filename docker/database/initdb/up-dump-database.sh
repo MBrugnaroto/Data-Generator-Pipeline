@@ -3,7 +3,7 @@
 dump(){
 	for file in *
  	do
-                mysql -u root $1 < $file
+                mysql -uroot -p${MARIADB_ROOT_PASSWORD} DB_TEST < $file
 		if [ $? -eq 0 ]
 		then
 			echo "Dump from" $file "to" $1 "was peformed"
@@ -13,15 +13,16 @@ dump(){
 	done
 }
 
+cd docker-entrypoint-initdb.d/
 LOCAL=$(ls | grep dump)
 
 if [ $(pwd | grep dump) ]
 then
-        dump $1
+        dump
 elif [ "${LOCAL:-0}" != 0 ]
 then
         cd dump/
-        dump $1
+        dump
 else
         echo "Dump folder not found."
 fi
