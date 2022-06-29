@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  generator:
+    build: .
+    container_name: generator-container
+    networks:
+      - database_network
+    environment:
+      - DB=${DB}
+      - HOST=${HOST}
+      - PORT=${PORT}
+      - USER=${USER}
+      - PASSWORD=${PASSWORD}
+networks:
+  database_network:
+    external: true
