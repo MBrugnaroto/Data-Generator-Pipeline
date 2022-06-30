@@ -39,6 +39,7 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Pandas
 - Bash Scripting
 - SQL Power Architect
+- Docker
 
 ### Modelagem do Banco de Dados:
 - Modelagem Relacional
