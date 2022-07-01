@@ -6,14 +6,26 @@ services:
     volumes:
       - ${BACKUP_DB}:/docker-entrypoint-initdb.d/
       - data:/var/lib/mysql
+<<<<<<< HEAD
     networks:
       - connect_network
+=======
+      - type: bind
+        source: ${DATALAKE_PATH}
+        target: /home/datalake
+    networks:
+      - network
+>>>>>>> a5cd8f4754fb7cd643e6a7959954a3d90a11d1e0
     ports:
       - ${PORT}:3306
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
 networks:
+<<<<<<< HEAD
   connect_network:
+=======
+  network:
+>>>>>>> a5cd8f4754fb7cd643e6a7959954a3d90a11d1e0
     driver: bridge
 volumes:
   data:
