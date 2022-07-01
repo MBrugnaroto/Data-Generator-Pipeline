@@ -13,26 +13,12 @@ class MariaDBHook():
                  password) -> None:
         self.database = database
         self.host = host
-<<<<<<< HEAD
         self.port = int(port) 
-=======
-        self.port = port 
->>>>>>> a5cd8f4754fb7cd643e6a7959954a3d90a11d1e0
         self.user = user 
         self.pw = password
         
         
     def get_conn(self) -> MariaDB.connect:
-<<<<<<< HEAD
-=======
-        print(
-            self.database,
-            self.host,
-            self.port,
-            self.user,
-            self.pw
-        )
->>>>>>> a5cd8f4754fb7cd643e6a7959954a3d90a11d1e0
         return MariaDB.connect(
             host=self.host,
             user=self.user,
