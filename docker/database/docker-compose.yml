@@ -2,28 +2,18 @@ version: '3.1'
 services:
   database:
     image: mariadb:10.8
-    container_name: db-container
+    container_name: db_container
     volumes:
       - ${BACKUP_DB}:/docker-entrypoint-initdb.d/
-      - db_data:/var/lib/mysql
-      - type: bind
-        source: ${DATALAKE_PATH}
-        target: /home/datalake
+      - data:/var/lib/mysql
     networks:
-      - db_network
+      - connect_network
     ports:
       - ${PORT}:3306
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-  db-services:
-    build: ./services
-    container_name: services-container
-    networks:
-      - db_network
-    depends_on:
-      - database
 networks:
-  db_network:
+  connect_network:
     driver: bridge
 volumes:
-  db_data:
+  data:
