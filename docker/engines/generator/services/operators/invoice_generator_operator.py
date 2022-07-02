@@ -1,4 +1,3 @@
-import os
 import pandas as pd
 from os.path import join
 from datetime import datetime
@@ -116,10 +115,10 @@ class InvoiceGeneratorOperator():
                                                                                 table[0] != 'itens_notas_fiscais' and \
                                                                                 table[0] != 'notas_fiscais'}
         self.set_tables(dump_tables)
-        generate_start = datetime.now()
+        #generate_start = datetime.now()
         self.generate_new_invoices(hook)
-        generate_end = datetime.now()
-        total = (generate_end - generate_start).total_seconds()
+        #generate_end = datetime.now()
+        #total = (generate_end - generate_start).total_seconds()
         
         # hook.insert_data("round_statistics", 
         #                  ["quantity", "function_total_time", "operator"], 
