@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  import:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DB_=${DB_}
+        - HOST_=${HOST_}
+        - PORT_=${PORT_}
+        - USER_=${USER_}
+        - PASSWORD_=${PASSWORD_}
+    container_name: import_container
+    volumes:
+      - type: bind
+        source: ${DATALAKE_PATH}
+        target: /usr/src/app/datalake
+    networks:
+      - database_connect_network
+    environment:
+      - DB=${DB_}
+      - HOST=${HOST_}
+      - PORT=${PORT_}
+      - USER=${USER_}
+      - PASSWORD=${PASSWORD_}
+networks:
+  database_connect_network:
+    external: true
