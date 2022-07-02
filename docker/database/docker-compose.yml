@@ -6,6 +6,9 @@ services:
     volumes:
       - ${BACKUP_DB}:/docker-entrypoint-initdb.d/
       - data:/var/lib/mysql
+      - type: bind
+        source: ${DATALAKE_PATH}
+        target: /usr/src/app/datalake
     networks:
       - connect_network
     ports:
