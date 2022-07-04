@@ -10,13 +10,16 @@ services:
         source: ${DATALAKE_PATH}
         target: /usr/src/app/datalake
     networks:
-      - connect_network
+      # - connect_network
+      - airflow_default
     ports:
       - ${PORT}:3306
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
 networks:
-  connect_network:
-    driver: bridge
+  airflow_default:
+    external: true
+  # connect_network:
+  #   driver: bridge
 volumes:
   data:
