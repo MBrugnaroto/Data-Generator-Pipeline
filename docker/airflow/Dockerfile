@@ -1,6 +1,7 @@
 FROM apache/airflow:2.3.2
 
 USER root
+
 RUN apt-get update && \
     apt-get -y install apt-transport-https \
     ca-certificates \
@@ -15,3 +16,4 @@ RUN apt-key add /tmp/dkey && \
     stable"
 RUN apt-get update && \
     apt-get -y install docker-ce
+RUN pip install apache-airflow-providers-docker
