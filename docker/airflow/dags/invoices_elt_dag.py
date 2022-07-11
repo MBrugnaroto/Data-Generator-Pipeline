@@ -1,5 +1,6 @@
 from airflow.decorators import dag
 from airflow.operators.docker_operator import DockerOperator
+from click import command
 from docker.types import Mount
 from datetime import datetime
 
@@ -15,11 +16,11 @@ ENV = {
 }
 
 VOLUME = [
-    Mount(target="/usr/src/app/datalake", source="/home/mbrugnar/workspace/data-generator/docker/datalake", type='bind')
+    Mount(target='/usr/src/app/datalake', source='/home/mbrugnar/workspace/data-generator/docker/datalake', type='bind')
 ]
 
 @dag(start_date=datetime(2022, 7, 9), schedule_interval='@daily', catchup=False)
-def generator_dag():
+def invoices_elt_dag():
     t1 = DockerOperator(
         task_id='invoice_generator',
         image='mbrugnar/generator:latest',
@@ -27,10 +28,23 @@ def generator_dag():
         environment=ENV,
         force_pull=True,
         auto_remove=True,
-        network_mode="database_connect_network",
+        network_mode='database_connect_network',
         mounts=VOLUME
     )
     
-    t1
+    t2 = DockerOperator(
+        task_id='invoice_loader',
+        image='mbrugnar/loader:latest',
+        container_name='loader_container',
+        working_dir='/usr/src/app/services',
+        command='engine.py',
+        environment=ENV,
+        force_pull=True,
+        auto_remove=True,
+        network_mode='database_connect_network',
+        mounts=VOLUME
+    )
     
-dag=generator_dag()
+    t1 >> t2
+    
+dag=invoices_elt_dag()

@@ -3,6 +3,7 @@ services:
   database:
     image: mariadb:10.8
     container_name: db_container
+    user: root
     volumes:
       - ${BACKUP_DB}:/docker-entrypoint-initdb.d/
       - data:/var/lib/mysql
