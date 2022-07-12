@@ -7,7 +7,6 @@ web-scraping-env
 *.vsix
 *.rar
 *.csv
-*.txt
 .ipynb_checkpoints/
 output/
 web/
@@ -21,6 +20,7 @@ __pycache__
 *.log
 docker/airflow/logs/
 raw_code/env
+casestudy/env/casestudy-env
 
 !.vscode/settings.json
 !.vscode/tasks.json
