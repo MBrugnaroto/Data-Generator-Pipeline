@@ -9,28 +9,39 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Aprimoramento na utilização das seguintes stacks:
     - Apache Airflow
     - Docker
+    - Kubernetes
     - Python
-    - Apache Spark
     - Jinja Templates
     - SQL
 
 ### Estrutura de Diretórios:
 ```
-├── /src (data-generator)
+├── /app
+├── /casestudy
+├── /imgs
+├── /raw_code_env
 |   ├── /app
 |   |   ├── /dags
 |   |   ├── /plugins
 |   |   |   ├── /hooks
 |   |   |   ├── /operators
 |   |   |   ├── /utils
-|   ├── /casestudy
 |   ├── /datalake
 |   |   ├── /silver (preprocessed)
-|   |   |   ├── /DB_NAME
-|   |   |   |   ├── /SUBFOLDER1
+|   |   |   ├── /database_name
+|   |   |   |   ├── /table
 |   |   |   |   ├── ...
-|   ├── /environmentcreator  
-|   ├── /imgs
+|   ├── /docker_engines
+|   ├── /docker_env 
+|   |   ├── /airflow
+|   |   ├── /datalake
+|   |   ├── /silver (preprocessed)
+|   |   |   ├── /database_name
+|   |   |   |   ├── /table
+|   |   |   |   ├── ...
+|   |   ├── /datawarehouse
+|   ├── /environmentcreator 
+|   |   ├── /dump
 ```
 ### Stack utilizadas até o momento:
 - Python
@@ -40,6 +51,7 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Bash Scripting
 - SQL Power Architect
 - Docker
+- Kubernetes
 
 ### Modelagem do Banco de Dados:
 - Modelagem Relacional
