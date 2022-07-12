@@ -16,4 +16,8 @@ RUN apt-key add /tmp/dkey && \
     stable"
 RUN apt-get update && \
     apt-get -y install docker-ce
+
+RUN /usr/local/bin/python -m pip install --upgrade pip
+
+USER airflow
 RUN pip install apache-airflow-providers-docker

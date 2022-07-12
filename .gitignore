@@ -19,7 +19,6 @@ __pycache__
 *.cfg
 *.db
 *.log
-*.env
 docker/airflow/logs/
 
 !.vscode/settings.json

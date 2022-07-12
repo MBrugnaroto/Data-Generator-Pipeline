@@ -5,19 +5,20 @@ from airflow.models import Variable
 from datetime import datetime
 from docker.types import Mount
 
+
 ENV = {
     'DB': Variable.get("DB"),
     'HOST': Variable.get("HOST"),
     'PORT': Variable.get("PORT"),
     'USER': Variable.get("USER"),
     'PASSWORD': Variable.get("PASSWORD"),
-    'MAX_INVOICES': 10,
-    'MAX_ITEMS': 10,
-    'QUANTITY': 100
+    'MAX_INVOICES': Variable.get("MAX_INVOICES", default_var=1),
+    'MAX_ITEMS': Variable.get("MAX_ITEMS", default_var=1),
+    'QUANTITY': Variable.get("QUANTITY", default_var=10)
 }
 
 VOLUME = [
-    Mount(target='/usr/src/app/datalake', source='/home/mbrugnar/workspace/data-generator/docker/datalake', type='bind')
+    Mount(target='/usr/src/app/datalake', source=Variable.get("DATALAKE"), type='bind')
 ]
 
 ARGS = {
