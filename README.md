@@ -51,7 +51,6 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Bash Scripting
 - SQL Power Architect
 - Docker
-- Kubernetes
 
 ### Modelagem do Banco de Dados:
 - Modelagem Relacional
