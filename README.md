@@ -51,7 +51,18 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 - Bash Scripting
 - SQL Power Architect
 - Docker
+- Airflow
 
+### Requirements:
+- Linux System
+- Docker
+- Python
+
+### How to run:
+- Diretório do Ambiente Produtivo atual: ``raw_code``->``docker_env``
+```
+$ ./start.sh
+```
 ### Modelagem do Banco de Dados:
 - Modelagem Relacional
 - Estrutura:
@@ -99,6 +110,4 @@ Projeto pessoal em desenvolvimento para estudo dos principais conceitos e stacks
 #### Conclusão:
 
 ### Próximos Passos:
-- Criar ambiente em docker
-- Utilizar um orquestrador/scheduler (Airflow)
 - Gerar insights através da base gerada (desenvolver KPIs para monitoramento)
