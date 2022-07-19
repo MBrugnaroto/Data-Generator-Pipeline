@@ -47,17 +47,17 @@ with DAG(
     )
     
     t2 = DockerOperator(
-            task_id='invoice_loader',
-            image='mbrugnar/loader:latest',
-            container_name='loader_container',
-            working_dir='/usr/src/app/services',
-            command='engine.py',
-            environment=ENV,
-            force_pull=True,
-            auto_remove=True,
-            network_mode='database_connect_network',
-            mounts=VOLUME
-        )
+        task_id='invoice_loader',
+        image='mbrugnar/loader:latest',
+        container_name='loader_container',
+        working_dir='/usr/src/app/services',
+        command='engine.py',
+        environment=ENV,
+        force_pull=True,
+        auto_remove=True,
+        network_mode='database_connect_network',
+        mounts=VOLUME
+    )
     
     t1 >> t2
     

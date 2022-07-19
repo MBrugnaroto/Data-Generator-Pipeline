@@ -10,13 +10,13 @@ if [ ! $(ls | grep datalake) ]; then
     fi
 fi
 
-PATH_DW="$(pwd)/datalake"
+PATH_DL="$(pwd)/datalake"
 
 cd airflow
 
-sed -i "s@AIRFLOW_LOCAL_DL=.*@AIRFLOW_LOCAL_DL='${PATH_DW}'@" .env
+sed -i "s@AIRFLOW_LOCAL_DL=.*@AIRFLOW_LOCAL_DL='${PATH_DL}'@" .env
 sed -i "s@AIRFLOW_UID=.*@AIRFLOW_UID=$(id -u)@" .env
 
-cd ../database/
+cd ../datawarehouse/
 
-sed -i "s@DATALAKE_PATH=.*@DATALAKE_PATH=${PATH_DW}@" .env
+sed -i "s@DATALAKE_PATH=.*@DATALAKE_PATH=${PATH_DL}@" .env
